@@ -10,6 +10,28 @@ let currentItem = 0;
 let totalItems = 10; // change this if you do more than 10 items
 
 async function getData() {
+    try {
+        frame.innerText = "loading..."
+        const response = await fetch("https://dog.ceo/api/breeds/image/random/10");
+        const data = await response.json();
+        frame.innerText = ""
+        
+        for (let i = 0; i < data.message.length; i++) {
+            const li = document.createElement("li");
+            if (i === 0) {
+                li.classList.add("active")
+            }
+            const img = document.createElement("img");
+            img.src = data.message[i];
+            li.appendChild(img);
+            frame.appendChild(li);
+        }
+
+    } catch (error) {
+        frame.innerText = "Something went wrong. Please try again later"
+        console.error(error)
+
+    }
     // YOUR CODE HERE
 
 }
