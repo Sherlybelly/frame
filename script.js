@@ -12,7 +12,7 @@ let totalItems = 10; // change this if you do more than 10 items
 async function getData() {
     try {
         frame.innerText = "loading..."
-        const response = await fetch("https://dog.ceo/api/breeds/image/random/10");
+        const response = await fetch("https://dog.ceo/api/breeds/image/random/" + totalItems);
         const data = await response.json();
         frame.innerText = ""
         
